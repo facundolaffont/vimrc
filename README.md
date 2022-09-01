@@ -7,3 +7,6 @@ Vim vimrc config file.
 Go to terminal and execute the following command:
 + Windows: `curl -sS https://raw.githubusercontent.com/facundolaffont/vimrc/main/vimrc > $HOME\vimfiles\vimrc`
 + Linux: `curl -sS https://raw.githubusercontent.com/facundolaffont/vimrc/main/vimrc > $HOME/.vimrc`
+
+## Next
++ Translate comments into english.
