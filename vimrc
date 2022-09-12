@@ -1,26 +1,26 @@
-" g:env se utilizará para saber qué tipo de sistema operativo tiene la computadora.
+" g:env will be used to know which type of OS is running.
 if has('win64') || has('win32')
     let g:env = "WINDOWS"
-    let g:tabActual = 0
-    let g:tabAnterior = 0
+    let g:thisTab = 0
+    let g:prevTab = 0
 else
-    let g:env = "OTRO"
+    let g:env = "OTHER"
 endif
 
-" Configuraciones de colores.
+" Color configs.
 let g:lightline = {
   \ 'colorscheme': 'wombat',
   \ }
 colorscheme pablo
 
-" Se utilizará para realizar combinaciones de teclas al llamar a <leader>.
+" Used to make key combinations.
 let mapleader = ","
 
-" Elimina el tiempo de espera en combinaciones de teclas.
+" It eliminates waiting time in key combinations.
 set notimeout
 set nottimeout
 
-" Habilita el filetype.
+" Enables filetype.
 filetype plugin on
 filetype indent on
 
