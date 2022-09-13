@@ -4,9 +4,16 @@ Vim vimrc config file.
 
 ## Installation
 
-Go to terminal and execute the following command:
-+ Windows: `curl -sS https://raw.githubusercontent.com/facundolaffont/vimrc/main/vimrc > $HOME\vimfiles\vimrc`
-+ Linux: `curl -sS https://raw.githubusercontent.com/facundolaffont/vimrc/main/vimrc > $HOME/.vimrc`
+On terminal execute:
 
+Windows:
+```sh
+curl -sS https://raw.githubusercontent.com/facundolaffont/vimrc/main/vimrc > $HOME\vimfiles\vimrc
+```
+Linux:
+```sh
+curl -sS https://raw.githubusercontent.com/facundolaffont/vimrc/main/vimrc > $HOME/.vimrc
+```
 ## Next
-+ Translate comments into english.
++ Make line moving work in Mac version.
++ Make cycle between last tab work in Windows version.
