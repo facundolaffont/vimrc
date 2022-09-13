@@ -16,7 +16,7 @@ colorscheme pablo
 " Used to make key combinations.
 let mapleader = ","
 
-" It eliminates waiting time in key combinations.
+" Eliminates waiting time in key combinations.
 set notimeout
 set nottimeout
 
@@ -24,132 +24,126 @@ set nottimeout
 filetype plugin on
 filetype indent on
 
-" Define un funcionamiento normal del Backspace
+" Defines a normal behaviour of backspace.
 set backspace=indent,eol,start
 
-" Grabado rápido.
+" Fast saving.
 nmap <leader>w :w!<cr>
 
-" Cierra la ventana actual.
+" Closes the current window.
 nmap <leader>q<leader> :q<cr>
 
-" Sale de Vim si todos los buffers están guardados.
+" Quits Vim if every buffer is already saved.
 nmap <leader>qa :qa<cr>
 
-" Deja 5 líneas de espacio entre el cursor y los bordes verticales de la ventana cuando se escrollea.
+" It leaves 5 lines minimum between cursor and top and bottom borders.
 set so=5
 
-" Modo normal: atajo para acceder al tag debajo del cursor (la combinación de teclas por defecto
-" no la puedo realizar con mi computadora).
+" Normal mode: accesses tag under cursor.
 nmap <leader><leader>t <C-]>
 
-" Modo normal: copia desde el cursor hasta el fin de línea.
+" Normal mode: copies from cursor to end of line.
 map Y y$
 
-" Siempre muestra la línea de estado.
+" Always shows status line.
 set laststatus=2
 
-" Cuando se presiona TAB en la línea de comandos, muestra las opciones posibles.
+" Shows command line options when tab is pressed.
 set wildmenu
 
-" Muestra el número de línea de la línea actual y el número relativo
-" de línea del resto de las líneas.
+" Shows the line number of current line and relative numbers in other lines.
 set number
 set relativenumber
 
-" Invierte los valores de 'number' y 'relativenumber'.
+" Toggles 'number' and 'relativenumber' options.
 nmap <leader>sn :set number!<enter>:set relativenumber!<enter>
 
-
-" Habilita el mouse para escrollear y redimensionar.
+" Enables mouse for scrolling and resizing.
 set mouse=a
 
-" Habilita el plegamiento de texto mediante indentación, y está
-" desactivado por defecto.
+" Set folding by indentation but disables it by default.
 set foldmethod=indent
 set nofoldenable
 
-" Lee automaticamente los archivos si fueron modificados por fuera de Vim
+" Reads files automatically if they were modified.
 set autoread
 
-" Incrementa el límite del comando deshacer.
+" Increments undo history.
 set history=1000
 
-" Deshabilita el sonido cuando se produce un error, y en cambio muestra
-" un pantalleo blanco.
+" Disables sound on error, and shows a blank screen instead.
 set noerrorbells
 set visualbell
 
-" Altura de la barra de comandos.
+" Command bar height.
 set cmdheight=2
 
-" Ignora las mayúsculas cuando busca.
+" Ignores case when searching.
 set ignorecase
 
-" Resalta los resultados de las búsquedas.
+" Highlights search results.
 set hlsearch
 
-" Hace que la búsqueda actúe como en los navegadores modernos.
+" Makes search work like modern browsers.
 set incsearch
 
-" Muestra los paréntesis complementarios cuando el cursor está encima de alguno.
+" Shows complementary parenthesis when cursor is over one of them.
 set showmatch 
 
-" Subraya la línea en la que se encuentra actualmente el cursor.
+" Underlines current line.
 set cursorline
 
-" Habilita el resaltado por sintaxis.
+" Enables syntax highlighting.
 syntax enable
 
-" Configura el encoding por defecto a UTF8.
+" Sets UTF8 as default encoding.
 set encoding=utf8
 
-" Configura el formateo de final de línea utilizado
+" Sets line ending format.
 set fileformat=unix
 
-" Deshabilita el backup.
+" Disables backup.
 set nobackup
 set nowb
 set noswapfile
 
-" Utiliza espacios en vez de tabs.
+" Uses spaces instead of tabs.
 set expandtab
 
-" Utilizar tabs inteligentemente.
+" Enables smart tabs.
 set smarttab
 
-" 1 tab = 2 espacios.
+" 1 tab = 2 spaces.
 set shiftwidth=2
 set tabstop=2
 
-" Separación de línea a los  500 caracteres.
+" Sets line separation at 500 characters.
 set lbr
 set tw=500
 
-" Auto indentación.
+" Sets auto and smart indentation.
 set ai
-
-" Indentación inteligente.
 set si
 
-" Envoltura de líneas.
+" Sets line wrapping.
 set wrap
 
-" VISUAL: presionando * o # busca la selección actual.
+" Visual mode: fordward searches or reverse searches current selection, pressing * or #, respectively.
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 
-" VISUAL: encierra lo seleccionado en paréntesis y comillas.
+" Visual mode: wraps selection between different elements.
 vnoremap $1 <esc>`>a)<esc>`<i(<esc>
 vnoremap $2 <esc>`>a]<esc>`<i[<esc>
 vnoremap $3 <esc>`>a}<esc>`<i{<esc>
 vnoremap $q <esc>`>a"<esc>`<i"<esc>
 vnoremap $' <esc>`>a'<esc>`<i'<esc>
 
-" VISUAL: busca el texto seleccionado y llama a reemplazar.
+" Visual mode: searches current selection and calls replace.
 vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
 
-" INSERT: crea ambos paréntesis/comillas, y deja el cursor dentro.
+" Insert mode: creates both parenthesis/brackets/quotes and leaves cursor in
+" between.
 inoremap $1 ()<esc>i
 inoremap $2 []<esc>i
 inoremap $3 {}<esc>i
@@ -158,20 +152,20 @@ inoremap $" ""<esc>i
 inoremap $' ''<esc>i
 inoremap $< <><esc>i
 
-" INSERT: el cursor avanza un carácter.
+" Insert mode: moves cursor one character forward.
 inoremap $$ <esc>la
 
-" Mapea <Space> a / (búsqueda) y Ctrl-<Space> a ? (búsqueda reversa).
+" Maps <space> to / (forward search) and ctrl-<space> to ? (reverse search).
 map <space> /
 map <c-space> ?
 
-" Moverse entre ventanas.
+" Moves between windows.
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-" Mapeos para pestañas.
+" Window useful mappings.
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
@@ -179,30 +173,29 @@ map <leader>tm :tabmove
 map <leader>t<leader> :tabnext 
 if g:env == "WINDOWS"
   map <leader>t<leader><leader> :tabnext g:tabAnterior<enter>
-  " Todavía no funciona.
+  " Still doesn't work.
 else
   map <leader>t<leader><leader> :tabnext #<enter>
 endif
 
-" Cambia el directorio de trabajo actual al directorio del buffer actual.
+" Changes current working directory to current buffer directory.
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
-" Mapeos de buffers.
+" Buffer useful mappings.
 nmap <leader>b<leader> :buffers<enter>
 nmap <leader>bd :bw<space>
 nmap <leader>bo :b<space>
 
-
-" Regresa a la última posición al editar archivos.
+" Comes back to last position when opening a file.
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-" Mueve una línea de texto utilizando Alt+[j | k] o Command+[j | k] en Mac.
+" Moves a text line in Mac.
 " nmap <M-j> mz:m+<cr>`z
 " nmap <M-k> mz:m-2<cr>`z
 " vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 " vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
-" Mapeos para espaciado de líneas.
+" Line spacing useful mappings.
 nmap <space>j<space> o<Esc>k
 nmap <space><space>j o<Esc>
 nmap <space>k<space> O<Esc>j
@@ -214,9 +207,9 @@ nmap <space>l<space> a<space><Esc>h
 nmap <space><space>l a<space><esc>
 nmap <space>hl<space> i<space><esc>la<space><esc>h
 
-"""""""""""""""""""""""""""""""""""""
-" Sector de definición de funciones "
-"""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""
+" Function definitions "
+""""""""""""""""""""""""
 
 function! VisualSelection(direction, extra_filter) range
     let l:saved_reg = @"
@@ -234,4 +227,3 @@ function! VisualSelection(direction, extra_filter) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
-
