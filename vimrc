@@ -142,8 +142,7 @@ vnoremap $' <esc>`>a'<esc>`<i'<esc>
 " Visual mode: searches current selection and calls replace.
 vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
 
-" Insert mode: creates both parenthesis/brackets/quotes and leaves cursor in
-" between.
+" Insert mode: creates both parenthesis/brackets/quotes and leaves cursor in between.
 inoremap $1 ()<esc>i
 inoremap $2 []<esc>i
 inoremap $3 {}<esc>i
@@ -172,8 +171,8 @@ map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove 
 map <leader>t<leader> :tabnext 
 if g:env == "WINDOWS"
-  map <leader>t<leader><leader> :tabnext g:tabAnterior<enter>
   " Still doesn't work.
+  map <leader>t<leader><leader> :tabnext g:tabAnterior<enter>
 else
   map <leader>t<leader><leader> :tabnext #<enter>
 endif
