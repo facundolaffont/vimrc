@@ -14,4 +14,4 @@ curl -sS https://raw.githubusercontent.com/facundolaffont/vimrc/main/vimrc > $HO
 ```
 ## Next
 + Make line moving work in Mac version.
-+ Make cycle between last tab work in Windows version.
++ Add plugins installation.
