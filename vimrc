@@ -126,7 +126,7 @@ set ai
 set si
 
 " Sets line wrapping.
-set wrap
+set nowrap
 
 " Visual mode: fordward searches or reverse searches current selection, pressing * or #, respectively.
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
@@ -180,7 +180,7 @@ endif
 " Changes current working directory to current buffer directory.
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
-" Buffer useful mappings.
+" Buffer mappings.
 nmap <leader>b<leader> :buffers<enter>
 nmap <leader>bd :bw<space>
 nmap <leader>bo :b<space>
