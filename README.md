@@ -4,8 +4,6 @@ Vim vimrc config file.
 
 ## Installation
 
-On terminal execute:
-
 Windows:
 ```sh
 curl -sS https://raw.githubusercontent.com/facundolaffont/vimrc/main/vimrc > $HOME\vimfiles\vimrc
