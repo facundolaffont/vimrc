@@ -206,6 +206,9 @@ nmap <space>l<space> a<space><Esc>h
 nmap <space><space>l a<space><esc>
 nmap <space>hl<space> i<space><esc>la<space><esc>h
 
+" Remove comment if NERDTree is installed
+" nnoremap <C-t> :NERDTreeToggle<CR>
+
 """"""""""""""""""""""""
 " Function definitions "
 """"""""""""""""""""""""
