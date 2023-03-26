@@ -5,20 +5,30 @@ Vim vimrc config file.
 ## Installation
 
 ### Windows
-```sh
-curl -sS https://raw.githubusercontent.com/facundolaffont/vimrc/main/vimrc > $HOME\vimfiles\vimrc
+
+```powershell
+git https://github.com/facundolaffont/vimrc.git $HOME\vimfiles
 ```
 
 ### Linux
+
 ```sh
-curl -sS https://raw.githubusercontent.com/facundolaffont/vimrc/main/vimrc > $HOME/.vimrc
+git https://github.com/facundolaffont/vimrc.git ~/.vim
 ```
 
-If you also want to apply this configs to root account, after downloading:
+If you also want to apply this configs to root account:
+
 ```sh
-sudo cp $HOME/.vimrc /root/
+sudo git https://github.com/facundolaffont/vimrc.git /root/.vim
 ```
+
+## Plugins that I use
+
+[NERDTree](https://github.com/preservim/nerdtree)
+
+[Emmet](https://github.com/mattn/emmet-vim)
 
 ## Next
+
 + Make line moving work in Mac version.
 + Add plugins installation.
