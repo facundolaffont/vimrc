@@ -32,3 +32,4 @@ curl -sS https://raw.githubusercontent.com/facundolaffont/vimrc/main/vimrc /root
 
 + Make line moving work in Mac version.
 + Add plugins installation.
++ Add code to install plugins using Vim 8 packages.
