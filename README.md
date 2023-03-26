@@ -7,19 +7,19 @@ Vim vimrc config file.
 ### Windows
 
 ```powershell
-git https://github.com/facundolaffont/vimrc.git $HOME\vimfiles
+curl -sS https://raw.githubusercontent.com/facundolaffont/vimrc/main/vimrc > $HOME\vimfiles\vimrc
 ```
 
 ### Linux
 
 ```sh
-git https://github.com/facundolaffont/vimrc.git ~/.vim
+curl -sS https://raw.githubusercontent.com/facundolaffont/vimrc/main/vimrc > $HOME/.vim/vimrc
 ```
 
 If you also want to apply this configs to root account:
 
 ```sh
-sudo git https://github.com/facundolaffont/vimrc.git /root/.vim
+curl -sS https://raw.githubusercontent.com/facundolaffont/vimrc/main/vimrc /root/.vim/vimrc
 ```
 
 ## Plugins that I use
