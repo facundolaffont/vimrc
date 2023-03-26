@@ -33,6 +33,9 @@ nmap <leader>w :w!<cr>
 " Closes the current window.
 nmap <leader>q<leader> :q<cr>
 
+" Closes the current window without saving.
+nmap <leader><leader>q :q!<cr>
+
 " Quits Vim if every buffer is already saved.
 nmap <leader>qa :qa<cr>
 
