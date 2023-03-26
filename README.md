@@ -5,13 +5,24 @@ Vim vimrc config file.
 ## Installation
 
 Windows:
-```sh
-curl -sS https://raw.githubusercontent.com/facundolaffont/vimrc/main/vimrc > $HOME\vimfiles\vimrc
+
+```powershell
+git https://github.com/facundolaffont/vimrc.git $HOME\vimfiles
 ```
+
 Linux:
+
 ```sh
-curl -sS https://raw.githubusercontent.com/facundolaffont/vimrc/main/vimrc > $HOME/.vimrc
+git https://github.com/facundolaffont/vimrc.git ~/.vim
 ```
+
+## Plugins that I use
+
+[NERDTree](https://github.com/preservim/nerdtree)
+
+[Emmet](https://github.com/mattn/emmet-vim)
+
 ## Next
+
 + Make line moving work in Mac version.
 + Add plugins installation.
