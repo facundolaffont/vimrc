@@ -28,6 +28,8 @@ curl -sS https://raw.githubusercontent.com/facundolaffont/vimrc/main/vimrc /root
 
 [Emmet](https://github.com/mattn/emmet-vim)
 
+[ctrlp](https://github.com/ctrlpvim/ctrlp.vim)
+
 ## Next
 
 + Make line moving work in Mac version.
