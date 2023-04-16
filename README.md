@@ -12,23 +12,13 @@ curl -sS https://raw.githubusercontent.com/facundolaffont/vimrc/main/vimrc > $HO
 
 ### Linux
 
-```sh
-curl -sS https://raw.githubusercontent.com/facundolaffont/vimrc/main/vimrc > $HOME/.vim/vimrc
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && \
-mkdir -p ~/.vim/pack/plugins/start && \
-git clone --depth=1 https://github.com/ctrlpvim/ctrlp.vim.git ~/.vim/pack/plugins/start/ctrlp
-```
-
-If you also want to apply this configs to root account:
+Execute from console:
 
 ```sh
-curl -sS https://raw.githubusercontent.com/facundolaffont/vimrc/main/vimrc /root/.vim/vimrc && \
-curl -fLo /root/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && \
-mkdir -p /root/.vim/pack/plugins/start && \
-git clone --depth=1 https://github.com/ctrlpvim/ctrlp.vim.git /root/.vim/pack/plugins/start/ctrlp
+curl -Ls https://raw.githubusercontent.com/facundolaffont/vimrc/main/install.sh | bash
 ```
+
+If you want to install it for root, first login as root with `su -` command, and then execute the script.
 
 ## Plugins that I use
 
