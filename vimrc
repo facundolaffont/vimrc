@@ -1,3 +1,9 @@
+" VimPlug plugins list.
+call plug#begin()
+  Plug 'preservim/nerdtree'
+  Plug 'mattn/emmet-vim'
+call plug#end()
+
 " g:env will be used to know which type of OS is running.
 if has('win64') || has('win32')
     let g:env = "WINDOWS"
