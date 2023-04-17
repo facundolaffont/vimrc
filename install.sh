@@ -1,10 +1,11 @@
 echo "Installing for user $USER:"
 if [[ ! -a $HOME/.vim/vimrc ]]
 then
-    curl -sS https://raw.githubusercontent.com/facundolaffont/vimrc/main/vimrc > $HOME/.vim/vimrc
+    curl -LsS https://raw.githubusercontent.com/facundolaffont/vimrc/main/vimrc > $HOME/.vim/vimrc
     echo -e "\t- vimrc was copied."
 else
-    echo -e "\t- vimrc already exists."
+    curl -LsS https://raw.githubusercontent.com/facundolaffont/vimrc/main/vimrc > $HOME/.vim/vimrc
+    echo -e "\t- vimrc was overwritten."
 fi
 
 if [[ ! -a $HOME/.vim/autoload/plug.vim ]]
