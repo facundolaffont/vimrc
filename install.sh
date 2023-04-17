@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "Installing for user $USER:"
 if [[ ! -a $HOME/.vim/vimrc ]]
 then
