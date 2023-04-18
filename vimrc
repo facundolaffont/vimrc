@@ -192,6 +192,7 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 " Buffer mappings.
 nmap <leader>b<leader> :buffers<enter>
 nmap <leader>bd :bw<space>
+nmap <leader>ba :b<space>#<enter>
 nmap <leader>bo :b<space>
 
 " Comes back to last position when opening a file.
