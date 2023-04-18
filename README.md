@@ -9,7 +9,7 @@ Vim vimrc config file.
 Execute from console:
 
 ```sh
-curl -fLSs https://raw.githubusercontent.com/facundolaffont/vimrc/main/install.sh | xargs -r bash
+curl -fLSs https://raw.githubusercontent.com/facundolaffont/vimrc/main/install.sh | bash
 ```
 
 If you want to install it for root, first login as root with `su -` command, and then execute the script.
