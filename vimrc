@@ -19,9 +19,6 @@ let g:lightline = {
   \ }
 colorscheme pablo
 
-" Used to make key combinations.
-let mapleader = ","
-
 " Eliminates waiting time in key combinations.
 set notimeout
 set nottimeout
@@ -32,6 +29,12 @@ filetype indent on
 
 " Defines a normal behaviour of backspace.
 set backspace=indent,eol,start
+
+" Used to make key combinations.
+let mapleader = ","
+
+" Open vimrc file.
+nmap <leader>v<leader> :edit ~/.vim/vimrc<enter>
 
 " Fast saving.
 nmap <leader>w :w!<cr>
