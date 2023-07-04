@@ -28,4 +28,4 @@ else
     echo -e "\t- ctrlp already exists."
 fi
 
-vim -es +PlugInstall +qall &
+vim -es +PlugInstall +qall
