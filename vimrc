@@ -14,8 +14,9 @@ else
 endif
 
 " Color configs.
+" List of preference: desert, evening, habamax, lunaperche, quiet, wombat.
 let g:lightline = {
-  \ 'colorscheme': 'wombat',
+  \ 'colorscheme': 'desert',
   \ }
 colorscheme pablo
 
