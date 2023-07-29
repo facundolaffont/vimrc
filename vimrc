@@ -18,7 +18,7 @@ endif
 let g:lightline = {
   \ 'colorscheme': 'desert',
   \ }
-colorscheme pablo
+colorscheme desert
 
 " Eliminates waiting time in key combinations.
 set notimeout
