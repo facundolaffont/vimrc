@@ -155,8 +155,8 @@ vnoremap $3 <esc>`>a}<esc>`<i{<esc>
 vnoremap $q <esc>`>a"<esc>`<i"<esc>
 vnoremap $' <esc>`>a'<esc>`<i'<esc>
 
-" Visual mode: searches current selection and calls replace.
-vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
+" Normal mode: enter substitute command with word under the cursor as search pattern.
+:nnoremap <leader>s :%s/<C-r><C-w>//gc<left><left><left>
 
 " Insert mode: creates both parenthesis/brackets/quotes and leaves cursor in between.
 inoremap $1 ()<esc>i
