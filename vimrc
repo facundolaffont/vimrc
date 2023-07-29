@@ -58,6 +58,9 @@ nmap <leader><leader>t <C-]>
 " Normal mode: copies from cursor to end of line.
 map Y y$
 
+" Shortcut to show registers.
+nnoremap <leader><space>r :registers<enter>
+
 " Always shows status line.
 set laststatus=2
 
