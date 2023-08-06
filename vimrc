@@ -155,8 +155,10 @@ vnoremap $3 <esc>`>a}<esc>`<i{<esc>
 vnoremap $q <esc>`>a"<esc>`<i"<esc>
 vnoremap $' <esc>`>a'<esc>`<i'<esc>
 
-" Normal mode: enter substitute command with word under the cursor as search pattern.
-:nnoremap <leader>s :%s/<C-r><C-w>//gc<left><left><left>
+" Enter substitute command with word under the cursor as search pattern (first line)
+" or with visual selection as search pattern (second line).
+nnoremap <leader>s :%s/<C-r><C-w>//gc<left><left><left>
+vnoremap <leader>s :<C-u>call VisualSelection('', '')<CR>:%s/<C-R>=@/<CR>//gc<left><left><left>
 
 " Insert mode: creates both parenthesis/brackets/quotes and leaves cursor in between.
 inoremap $1 ()<esc>i
