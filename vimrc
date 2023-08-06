@@ -78,8 +78,10 @@ nmap <leader>sn :set number!<enter>:set relativenumber!<enter>
 set mouse=a
 
 " Set folding by indentation but disables it by default.
+" Also, sets 4 columns of fold levels on the left side of the window.
 set foldmethod=indent
 set nofoldenable
+set foldcolumn=4
 
 " Reads files automatically if they were modified.
 set autoread
