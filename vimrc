@@ -169,9 +169,6 @@ inoremap $" ""<esc>i
 inoremap $' ''<esc>i
 inoremap $< <><esc>i
 
-" Insert mode: moves cursor one character forward.
-inoremap $$ <esc>la
-
 " Maps <space> to / (forward search) and ctrl-<space> to ? (reverse search).
 map <space> /
 map <c-space> ?
