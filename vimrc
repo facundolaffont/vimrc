@@ -77,11 +77,15 @@ nmap <leader>sn :set number!<enter>:set relativenumber!<enter>
 " Enables mouse for scrolling and resizing.
 set mouse=a
 
-" Set folding by indentation but disables it by default.
+" Sets folding by indentation but disables it by default.
 " Also, sets 4 columns of fold levels on the left side of the window.
 set foldmethod=indent
 set nofoldenable
 set foldcolumn=4
+
+" Normal: adds shortcut to jump to next closed fold.
+nnoremap <silent> <leader>zj :call NextClosedFold('j')<cr>
+nnoremap <silent> <leader>zk :call NextClosedFold('k')<cr>
 
 " Reads files automatically if they were modified.
 set autoread
@@ -252,4 +256,18 @@ function! VisualSelection(direction, extra_filter) range
 
     let @/ = l:pattern
     let @" = l:saved_reg
+endfunction
+
+function! NextClosedFold(dir)
+    let cmd = 'norm!z'..a:dir
+    let view = winsaveview()
+    let [l0, l, open] = [0, view.lnum, 1]
+    while l != l0 && open
+        exe cmd
+        let [l0, l] = [l, line('.')]
+        let open = foldclosed(l) < 0
+    endwhile
+    if open
+        call winrestview(view)
+    endif
 endfunction
