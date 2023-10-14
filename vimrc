@@ -71,6 +71,9 @@ set wildmenu
 set number
 set relativenumber
 
+" Keeps the cursor in the same column after scrolling.
+set nostartofline
+
 " Toggles 'number' and 'relativenumber' options.
 nmap <leader>sn :set number!<enter>:set relativenumber!<enter>
 
