@@ -13,6 +13,10 @@ else
     let g:env = "OTHER"
 endif
 
+" Allows ctrlp to replace the current window with the new one, when
+" selecting with Enter.
+let g:ctrlp_open_new_file = 'r'
+
 " Color configs.
 " List of preference: desert, evening, habamax, lunaperche, quiet, wombat.
 let g:lightline = {
