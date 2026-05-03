@@ -20,6 +20,9 @@ let g:lightline = {
   \ }
 colorscheme desert
 
+" Shows key combinations.
+set showcmd
+
 " Eliminates waiting time in key combinations.
 set notimeout
 set nottimeout
@@ -213,11 +216,13 @@ nmap <leader>bo :b<space>
 " Comes back to last position when opening a file.
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-" Moves a text line in Mac.
-" nmap <M-j> mz:m+<cr>`z
-" nmap <M-k> mz:m-2<cr>`z
-" vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-" vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+" Moves a text line.
+nnoremap <M-j> :m .+1<CR>==
+nnoremap <M-k> :m .-2<CR>==
+inoremap <M-j> <Esc>:m .+1<CR>==gi
+inoremap <M-k> <Esc>:m .-2<CR>==gi
+vnoremap <M-j> :m '>+1<CR>gv=gv
+vnoremap <M-k> :m '<-2<CR>gv=gv
 
 " Line spacing useful mappings.
 nmap <space>j<space> o<Esc>k
