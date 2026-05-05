@@ -222,8 +222,8 @@ if g:env == "WINDOWS"
 else
   map <leader>t<leader><leader> :tabnext #<enter>
 endif
-
-" Changes current working directory to current buffer directory.
+ 
+" Changes current working directory to current file directory.
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Buffer mappings.
