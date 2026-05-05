@@ -16,8 +16,8 @@ endif
 " selecting with Enter.
 let g:ctrlp_open_new_file = 'r'
 
-" Makes netrw change the current working directory (only applies
-" to local buffer), so it changes as the user navigates.
+" Makes netrw change the buffer's current working directory 
+" so it changes as the user navigates.
 let g:netrw_keepdir = 0
 
 " Defines the autocmd commands group for netrw.
@@ -223,8 +223,11 @@ else
   map <leader>t<leader><leader> :tabnext #<enter>
 endif
  
+" Show current working directory.
+noremap <leader><leader>cd :pwd<cr>
+
 " Changes current working directory to current file directory.
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
+noremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Buffer mappings.
 nmap <leader>b<leader> :buffers<enter>
