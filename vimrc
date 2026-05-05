@@ -16,14 +16,18 @@ endif
 " selecting with Enter.
 let g:ctrlp_open_new_file = 'r'
 
-" Define el grupo de comandos autocmd para netrw.
+" Makes netrw change the current working directory (only applies
+" to local buffer), so it changes as the user navigates.
+let g:netrw_keepdir = 0
+
+" Defines the autocmd commands group for netrw.
 augroup netrw_fix
   autocmd!
   
   " Avoids netrw maps <C-l>, so this script's mapping can be used.
   autocmd FileType netrw nnoremap <buffer> <C-l> <C-W>l
 
-  " Muestra números relativos de línea.
+  " Shows relative line numbers inside netrw.
   autocmd FileType netrw setlocal relativenumber
 
 augroup END
