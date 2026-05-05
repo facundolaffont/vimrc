@@ -3,9 +3,6 @@ call plug#begin()
   Plug 'mattn/emmet-vim'
 call plug#end()
 
-" Used to make key combinations.
-let mapleader = ","
-
 " g:env will be used to know which type of OS is running.
 if has('win64') || has('win32')
     let g:env = "WINDOWS"
@@ -23,6 +20,9 @@ let g:ctrlp_open_new_file = 'r'
 " so it changes as the user navigates.
 let g:netrw_keepdir = 0
 
+" Used to make key combinations.
+let mapleader = ","
+
 " Defines the autocmd commands group for netrw.
 augroup netrw_fix
   autocmd!
@@ -36,6 +36,16 @@ augroup netrw_fix
 
   " Shows relative line numbers inside netrw.
   autocmd FileType netrw setlocal relativenumber
+
+  " Open file in VSCode.
+  autocmd FileType netrw nnoremap <buffer> <leader>o :call OpenNetrwFileInVSCode()<CR>
+
+augroup END
+
+augroup ctrlp_updates
+
+    " Open file in VSCode.
+    autocmd FileType ctrlp nnoremap <buffer> <C-v> :call OpenCtrlpFileInVSCode()<CR>
 
 augroup END
 
@@ -226,6 +236,9 @@ else
   map <leader>t<leader><leader> :tabnext #<enter>
 endif
  
+" Mapear la función a <leader>v (o la tecla que prefieras)
+nnoremap <leader>o :call OpenCurrentFileInVSCode()<CR>
+
 " Show current working directory.
 noremap <leader><leader>cd :pwd<cr>
 
@@ -303,4 +316,52 @@ function! NextClosedFold(dir)
     if open
         call winrestview(view)
     endif
+endfunction
+
+" Opens in VSCode netrw file under cursor,
+" reusing opened VSCode instance.
+function! OpenNetrwFileInVSCode()
+    
+    " Gets the netrw buffer's current working directory.
+    let l:dir = b:netrw_curdir
+    
+    " Gets the filename under the cursor.
+    let l:file = expand('<cfile>')
+
+    " Builds the path.
+    let l:path = l:dir . '/' . l:file
+    
+    " Executes VSCode silently, reusing the already opened window.
+    silent execute '!code -r ' . shellescape(l:path)
+    
+    " Redraws the screen.
+    redraw!
+
+endfunction
+
+" Opens in VSCode current buffer,
+" reusing opened VSCode instance.
+function! OpenCurrentFileInVSCode()
+
+    " Gets absolute path of current buffer.
+    let l:filepath = expand('%:p')
+    
+    " Verifies if buffer is not saved yet.
+    if l:filepath ==# ''
+        echo "Error: el buffer actual no tiene un archivo guardado."
+        return
+    endif
+    
+    " Opens VSCode.
+    silent execute '!code -r ' . shellescape(l:filepath)
+    
+    " Redraws the screen.
+    redraw!
+
+endfunction
+
+" Opens in VSCode selected file in ctrlp.
+function! OpenCtrlpFileInVSCode()
+    let l:file = ctrlp#getcline()
+    silent execute '!code -r ' . shellescape(l:file)
 endfunction
