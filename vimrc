@@ -217,7 +217,6 @@ map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove 
 map <leader>t<leader> :tabnext 
 if g:env == "WINDOWS"
-  " Still doesn't work.
   map <leader>t<leader><leader> :tabnext g:tabAnterior<enter>
 else
   map <leader>t<leader><leader> :tabnext #<enter>
