@@ -3,6 +3,9 @@ call plug#begin()
   Plug 'mattn/emmet-vim'
 call plug#end()
 
+" Used to make key combinations.
+let mapleader = ","
+
 " g:env will be used to know which type of OS is running.
 if has('win64') || has('win32')
     let g:env = "WINDOWS"
@@ -23,7 +26,11 @@ let g:netrw_keepdir = 0
 " Defines the autocmd commands group for netrw.
 augroup netrw_fix
   autocmd!
-  
+
+  " Changes shortcut to <Plug>NetrwHideEdit, because of conflicts
+  " with this script's configurations.
+  autocmd FileType netrw nnoremap <leader>h <Plug>NetrwHideEdit
+
   " Avoids netrw maps <C-l>, so this script's mapping can be used.
   autocmd FileType netrw nnoremap <buffer> <C-l> <C-W>l
 
@@ -52,9 +59,6 @@ filetype indent on
 
 " Defines a normal behaviour of backspace.
 set backspace=indent,eol,start
-
-" Used to make key combinations.
-let mapleader = ","
 
 " Open vimrc file.
 nmap <leader>v<leader> :edit ~/.vim/vimrc<enter>
