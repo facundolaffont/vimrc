@@ -1,6 +1,5 @@
 " VimPlug plugins list.
 call plug#begin()
-  Plug 'preservim/nerdtree'
   Plug 'mattn/emmet-vim'
 call plug#end()
 
@@ -16,6 +15,12 @@ endif
 " Allows ctrlp to replace the current window with the new one, when
 " selecting with Enter.
 let g:ctrlp_open_new_file = 'r'
+
+" Avoids netrw maps <C-l>, so this script's mapping can be used.
+augroup netrw_fix
+  autocmd!
+  autocmd FileType netrw nnoremap <buffer> <C-l> <C-W>l
+augroup END
 
 " Color configs.
 " List of preference: desert, evening, habamax, lunaperche, quiet, wombat.
@@ -246,7 +251,7 @@ nmap <space>hl<space> i<space><esc>la<space><esc>h
 """"""""""""""""""""""""
 
 " Toggle NERDTree.
-nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-t> :Lexplore<CR>
 
 
 """"""""""""""""""""""""
