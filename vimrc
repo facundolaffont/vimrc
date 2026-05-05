@@ -16,10 +16,16 @@ endif
 " selecting with Enter.
 let g:ctrlp_open_new_file = 'r'
 
-" Avoids netrw maps <C-l>, so this script's mapping can be used.
+" Define el grupo de comandos autocmd para netrw.
 augroup netrw_fix
   autocmd!
+  
+  " Avoids netrw maps <C-l>, so this script's mapping can be used.
   autocmd FileType netrw nnoremap <buffer> <C-l> <C-W>l
+
+  " Muestra números relativos de línea.
+  autocmd FileType netrw setlocal relativenumber
+
 augroup END
 
 " Color configs.
