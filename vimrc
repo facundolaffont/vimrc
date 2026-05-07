@@ -1,7 +1,16 @@
 " VimPlug plugins list.
 call plug#begin()
-  Plug 'mattn/emmet-vim'
+    Plug 'mattn/emmet-vim'
+    Plug 'Yggdroot/indentLine'
 call plug#end()
+
+autocmd VimEnter *
+    \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+    \ |   PlugInstall --sync | q
+    \ | endif
+
+" Opens netrw only if Vim initiates with an empty buffer and no files.
+autocmd VimEnter * if argc() == 0 && line2byte(1) == -1 | Explore | endif
 
 " g:env will be used to know which type of OS is running.
 if has('win64') || has('win32')
@@ -15,6 +24,10 @@ endif
 " Allows ctrlp to replace the current window with the new one, when
 " selecting with Enter.
 let g:ctrlp_open_new_file = 'r'
+
+" Activates indentation marks.
+let g:indentLine_setConceal = 1
+let g:vim_json_conceal=0
 
 " Makes netrw change the buffer's current working directory 
 " so it changes as the user navigates.
@@ -87,6 +100,9 @@ nmap <leader>qa :qa<cr>
 
 " It leaves 5 lines minimum between cursor and top and bottom borders.
 set so=5
+
+" It paints the column where the cursor is.
+set cursorcolumn
 
 " Normal mode: accesses tag under cursor.
 nmap <leader><leader>t <C-]>
