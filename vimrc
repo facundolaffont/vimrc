@@ -17,8 +17,20 @@ if has('win64') || has('win32')
     let g:env = "WINDOWS"
     let g:thisTab = 0
     let g:prevTab = 0
+
+    " Makes GVim windows start maximized.
+    if has("gui_running")
+        au GUIEnter * simalt ~x
+    endif
+
 else
     let g:env = "OTHER"
+
+    " Makes GVim windows start maximized.
+    if has("gui_running")
+        set lines=999 columns=999
+    endif
+
 endif
 
 " Allows ctrlp to replace the current window with the new one, when
