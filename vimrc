@@ -2,6 +2,7 @@
 call plug#begin()
     Plug 'mattn/emmet-vim'
     Plug 'Yggdroot/indentLine'
+    Plug 'nikvdp/ejs-syntax'
 call plug#end()
 
 autocmd VimEnter *
@@ -94,6 +95,11 @@ filetype indent on
 
 " Defines a normal behaviour of backspace.
 set backspace=indent,eol,start
+
+" Allows cursor to be anywhere, even if there is no character.
+" It helps using the cursor as a guide of code indentation as it
+" navigates vertically through code.
+set virtualedit=all
 
 " Open vimrc file.
 nmap <leader>v<leader> :edit ~/.vim/vimrc<enter>
@@ -307,7 +313,7 @@ nmap <space>hl<space> i<space><esc>la<space><esc>h
 " Mappings for plugins "
 """"""""""""""""""""""""
 
-" Toggle NERDTree.
+" Toggle Netrw browser.
 nnoremap <C-t> :Lexplore<CR>
 
 
