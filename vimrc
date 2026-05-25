@@ -101,6 +101,10 @@ set backspace=indent,eol,start
 " navigates vertically through code.
 set virtualedit=all
 
+" Shows characters for new lines and tabs.
+"set list
+"set listchars=eol:↲,tab:»·,trail:·
+
 " Open vimrc file.
 nmap <leader>v<leader> :edit ~/.vim/vimrc<enter>
 
