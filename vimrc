@@ -108,6 +108,9 @@ set virtualedit=all
 " Open vimrc file.
 nmap <leader>v<leader> :edit ~/.vim/vimrc<enter>
 
+" Reload vimrc file.
+nmap <leader><leader>v :source ~/.vim/vimrc<enter>
+
 " Fast saving.
 nmap <leader>w :w!<cr>
 
@@ -115,7 +118,7 @@ nmap <leader>w :w!<cr>
 nmap <leader>q<leader> :q<cr>
 
 " Closes the current window without saving.
-nmap <leader><leader>q :q!<cr>
+" Use command ZQ.
 
 " Quits Vim if every buffer is already saved.
 nmap <leader>qa :qa<cr>
@@ -133,7 +136,7 @@ nmap <leader><leader>t <C-]>
 map Y y$
 
 " Shortcut to show registers.
-nnoremap <leader><space>r :registers<enter>
+nnoremap <leader>r<leader> :registers<enter>
 
 " Always shows status line.
 set laststatus=2
@@ -236,7 +239,9 @@ vnoremap $1 <esc>`>a)<esc>`<i(<esc>
 vnoremap $2 <esc>`>a]<esc>`<i[<esc>
 vnoremap $3 <esc>`>a}<esc>`<i{<esc>
 vnoremap $q <esc>`>a"<esc>`<i"<esc>
+inoremap $" <esc>`>a"<esc>`<i"<esc>
 vnoremap $' <esc>`>a'<esc>`<i'<esc>
+inoremap $< <esc>`>a><esc>`<i<<esc>
 
 " Enter substitute command with word under the cursor as search pattern (first line)
 " or with visual selection as search pattern (second line).
@@ -287,7 +292,7 @@ noremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 nmap <leader>b<leader> :buffers<enter>
 nmap <leader>bd :bw<space>
 nmap <leader>ba :b<space>#<enter>
-nmap <leader>bo :b<space>
+nmap <leader>bo :buffers<enter>:b<space>
 
 " Comes back to last position when opening a file.
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
