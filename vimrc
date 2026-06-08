@@ -1,4 +1,4 @@
-" VimPlug plugins list.
+" Lista de plugins de VimPlug.
 call plug#begin()
     Plug 'mattn/emmet-vim'
     Plug 'Yggdroot/indentLine'
@@ -10,16 +10,16 @@ autocmd VimEnter *
     \ |   PlugInstall --sync | q
     \ | endif
 
-" Opens netrw only if Vim initiates with an empty buffer and no files.
+" Abre netrw solo si Vim inicia con un buffer vacio y sin archivos.
 autocmd VimEnter * if argc() == 0 && line2byte(1) == -1 | Explore | endif
 
-" g:env will be used to know which type of OS is running.
+" g:env se usa para saber que tipo de SO se esta ejecutando.
 if has('win64') || has('win32')
     let g:env = "WINDOWS"
     let g:thisTab = 0
     let g:prevTab = 0
 
-    " Makes GVim windows start maximized.
+    " Hace que las ventanas de GVim inicien maximizadas.
     if has("gui_running")
         au GUIEnter * simalt ~x
     endif
@@ -27,214 +27,259 @@ if has('win64') || has('win32')
 else
     let g:env = "OTHER"
 
-    " Makes GVim windows start maximized.
+    " Hace que las ventanas de GVim inicien maximizadas.
     if has("gui_running")
         set lines=999 columns=999
     endif
 
 endif
 
-" Allows ctrlp to replace the current window with the new one, when
-" selecting with Enter.
+" Permite que ctrlp reemplace la ventana actual con la nueva,
+" al seleccionar con Enter.
 let g:ctrlp_open_new_file = 'r'
 
-" Activates indentation marks.
+" Activa las marcas de indentacion.
 let g:indentLine_setConceal = 1
 let g:vim_json_conceal=0
 
-" Makes netrw change the buffer's current working directory 
-" so it changes as the user navigates.
+" Hace que netrw cambie el directorio de trabajo actual del buffer,
+" para que cambie mientras el usuario navega.
 let g:netrw_keepdir = 0
 
-" Used to make key combinations.
+" Se usa para crear combinaciones de teclas.
 let mapleader = ","
 
-" Defines the autocmd commands group for netrw.
+" Define el grupo de comandos autocmd para netrw.
 augroup netrw_fix
   autocmd!
 
-  " Changes shortcut to <Plug>NetrwHideEdit, because of conflicts
-  " with this script's configurations.
+    " Cambia el atajo a <Plug>NetrwHideEdit, por conflictos
+    " con las configuraciones de este script.
   autocmd FileType netrw nnoremap <leader>h <Plug>NetrwHideEdit
 
-  " Avoids netrw maps <C-l>, so this script's mapping can be used.
+    " Evita el mapeo <C-l> de netrw, para usar el de este script.
   autocmd FileType netrw nnoremap <buffer> <C-l> <C-W>l
 
-  " Shows relative line numbers inside netrw.
+    " Muestra numeros de linea relativos dentro de netrw.
   autocmd FileType netrw setlocal relativenumber
 
-  " Open file in VSCode.
+    " Abre archivo en VSCode.
   autocmd FileType netrw nnoremap <buffer> <leader>o :call OpenNetrwFileInVSCode()<CR>
 
 augroup END
 
 augroup ctrlp_updates
 
-    " Open file in VSCode.
+    " Abre archivo en VSCode.
     autocmd FileType ctrlp nnoremap <buffer> <C-v> :call OpenCtrlpFileInVSCode()<CR>
 
 augroup END
 
-" Color configs.
-" List of preference: desert, evening, habamax, lunaperche, quiet, wombat.
+" Comandos válidos para la ventana de preview que se abre con :copen.
+augroup quickfix_preview
+    autocmd!
+    
+    " Llama a la función que visualiza el archivo debajo del cursor.
+    autocmd FileType qf autocmd CursorMoved <buffer> call QuickfixPreview()
+augroup END
+
+" Permite seguir trabajando donde estaba cuando se abre :copen.
+augroup QuickfixOpen
+    autocmd!
+    autocmd QuickFixCmdPost vimgrep copen | wincmd p
+augroup END
+
+" Configuración de colores.
+" Lista de preferencias: desert, evening, habamax, lunaperche, quiet, wombat.
 let g:lightline = {
   \ 'colorscheme': 'desert',
   \ }
 colorscheme desert
 
-" Shows key combinations.
+" Muestra combinaciones de teclas.
 set showcmd
 
-" Eliminates waiting time in key combinations.
+" Elimina el tiempo de espera en combinaciones de teclas.
 set notimeout
 set nottimeout
 
-" Enables filetype.
+" Habilita filetype.
 filetype plugin on
 filetype indent on
 
-" Defines a normal behaviour of backspace.
+" Define un comportamiento normal de backspace.
 set backspace=indent,eol,start
 
-" Allows cursor to be anywhere, even if there is no character.
-" It helps using the cursor as a guide of code indentation as it
-" navigates vertically through code.
+" Permite que el cursor este en cualquier lugar, incluso sin carácter.
+" Ayuda a usar el cursor como guía de indentación del código
+" mientras se navega verticalmente.
 set virtualedit=all
 
-" Shows characters for new lines and tabs.
+" Muestra caracteres para saltos de línea y tabs.
 "set list
 "set listchars=eol:↲,tab:»·,trail:·
 
-" Open vimrc file.
+" Abre el archivo vimrc.
 nmap <leader>v<leader> :edit ~/.vim/vimrc<enter>
 
-" Reload vimrc file.
+" Recarga el archivo vimrc.
 nmap <leader><leader>v :source ~/.vim/vimrc<enter>
 
-" Fast saving.
+" Guardado rápido.
 nmap <leader>w :w!<cr>
 
-" Closes the current window.
+" Cierra la ventana actual.
 nmap <leader>q<leader> :q<cr>
 
-" Closes the current window without saving.
-" Use command ZQ.
+" Cierra la ventana actual sin guardar.
+" Usar el comando ZQ.
 
-" Quits Vim if every buffer is already saved.
+" Cierra Vim si todos los buffers ya están guardados.
 nmap <leader>qa :qa<cr>
 
-" It leaves 5 lines minimum between cursor and top and bottom borders.
+" Deja un mínimo de 5 líneas entre el cursor y los bordes superior e inferior.
 set so=5
 
-" It paints the column where the cursor is.
+" Resalta la columna donde está el cursor.
 set cursorcolumn
 
-" Normal mode: accesses tag under cursor.
+" Modo normal: accede al tag bajo el cursor.
 nmap <leader><leader>t <C-]>
 
-" Normal mode: copies from cursor to end of line.
+" Modo normal: copia desde el cursor hasta fin de línea.
 map Y y$
 
-" Shortcut to show registers.
+" Atajo para mostrar registros.
 nnoremap <leader>r<leader> :registers<enter>
 
-" Always shows status line.
+" Abre / cierra :copen.
+nnoremap <leader>cq :call ToggleQuickfix()<CR>
+
+" Mapeos para moverse a través de los resultados de :vimgrep.
+nnoremap ]q :cnext<CR>zz
+nnoremap [q :cprevious<CR>zz
+
+" Siempre muestra la linea de estado.
 set laststatus=2
 
-" Shows command line options when tab is pressed.
+" Muestra opciones de línea de comando al presionar Tab.
 set wildmenu
 
-" Shows the line number of current line and relative numbers in other lines.
+" Muestra el número de línea absoluto de la línea actual y el número relativo en las demás.
 set number
 set relativenumber
 
-" Keeps the cursor in the same column after scrolling.
+" Mantiene el cursor en la misma columna después de desplazarse.
 set nostartofline
 
-" Toggles 'number' and 'relativenumber' options.
+" Alterna las opciones 'number' y 'relativenumber'.
 nmap <leader>sn :set number!<enter>:set relativenumber!<enter>
 
-" Enables mouse for scrolling and resizing.
+" Habilita el mouse para desplazamiento y redimensionado.
 set mouse=a
 
-" Sets folding by indentation but disables it by default.
-" Also, sets 4 columns of fold levels on the left side of the window.
+" Configura plegado por indentación, pero lo deshabilita por defecto.
+" También fija 4 columnas para niveles de plegado a la izquierda.
 set foldmethod=indent
 set nofoldenable
 set foldcolumn=4
 
-" Normal: adds shortcut to jump to next closed fold.
+" Modo normal: agrega atajo para saltar al siguiente plegado cerrado.
 nnoremap <silent> <leader>zj :call NextClosedFold('j')<cr>
 nnoremap <silent> <leader>zk :call NextClosedFold('k')<cr>
 
-" Reads files automatically if they were modified.
+" Lee archivos automáticamente si fueron modificados.
 set autoread
 
-" Increments undo history.
+" Incrementa el historial de deshacer.
 set history=1000
 
-" Disables sound on error, and shows a blank screen instead.
+" Deshabilita sonido en errores y muestra una pantalla en blanco.
 set noerrorbells
 set visualbell
 
-" Command bar height.
+" Altura de la barra de comandos.
 set cmdheight=2
 
-" Ignores case when searching.
+" Ignora mayúsculas/minúsculas al buscar.
 set ignorecase
 
-" Highlights search results.
+" Resalta resultados de búsqueda.
 set hlsearch
 
-" Makes search work like modern browsers.
+" Hace que la búsqueda funcione como en navegadores modernos.
 set incsearch
 
-" Shows complementary parenthesis when cursor is over one of them.
+" Desactiva incsearch solo mientras se escribe :s (tambien con rango, ej. :%s).
+augroup substitute_cmdline_incsearch
+    autocmd!
+    autocmd CmdlineChanged : if substitute(getcmdline(), '^[%0-9,.$''+-]*', '', '') =~# '^s\>' && !exists('g:substitute_prev_incsearch') | let g:substitute_prev_incsearch = &incsearch | set noincsearch | elseif substitute(getcmdline(), '^[%0-9,.$''+-]*', '', '') !~# '^s\>' && exists('g:substitute_prev_incsearch') | let &incsearch = g:substitute_prev_incsearch | unlet g:substitute_prev_incsearch | endif
+    autocmd CmdlineLeave : if exists('g:substitute_prev_incsearch') | let &incsearch = g:substitute_prev_incsearch | unlet g:substitute_prev_incsearch | endif
+augroup END
+
+" Restaura incsearch al salir del :vimgrep iniciado por VimgrepProject.
+augroup vimgrep_cmdline_incsearch
+    autocmd!
+    autocmd CmdlineLeave : if exists('g:vimgrep_prev_incsearch') | let &incsearch = g:vimgrep_prev_incsearch | unlet g:vimgrep_prev_incsearch | endif
+augroup END
+
+" Muestra el paréntesis complementario cuando el cursor está sobre uno.
 set showmatch 
 
-" Underlines current line.
+" Subraya la línea actual.
 set cursorline
 
-" Enables syntax highlighting.
+" Habilita resaltado de sintaxis.
 syntax enable
 
-" Sets UTF8 as default encoding.
+" Establece UTF8 como codificación por defecto.
 set encoding=utf8
 
-" Sets line ending format.
+" Establece el formato de fin de línea.
 set fileformat=unix
 
-" Disables backup.
+" Deshabilita backup.
 set nobackup
 set nowb
 set noswapfile
 
-" Uses spaces instead of tabs.
+" Usa espacios en lugar de tabs.
 set expandtab
 
-" Enables smart tabs.
+" Habilita tabs inteligentes.
 set smarttab
 
-" 1 tab = 4 spaces.
+" 1 tab = 4 espacios.
 set shiftwidth=4
 set tabstop=4
 
-" Sets line separation at 500 characters.
+" Establece separación de línea en 500 caracteres.
 set lbr
 set tw=500
 
-" Sets auto and smart indentation.
+" Establece autoindentación e indentación inteligente.
 set ai
 set si
 
-" Sets line wrapping.
+" Configura el ajuste de línea.
 set nowrap
 
-" Visual mode: fordward searches or reverse searches current selection, pressing * or #, respectively.
+" Modo visual: busca hacia adelante o hacia atrás la selección actual,
+" al presionar * o #, respectivamente.
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 
-" Visual mode: wraps selection between different elements.
+" Prepara :vimgrep con la palabra bajo el cursor o con la selección visual,
+" para que se pueda completar el filtro de archivos al final.
+nnoremap <silent> <leader>* :call VimgrepProject(0)<CR>
+vnoremap <silent> <leader>* :<C-u>call VisualSelection('', '')<CR>:call VimgrepProject(1)<CR>
+
+" Ingresa comando de sustitución con la palabra bajo el cursor como
+" patrón de búsqueda (primera línea) o con selección visual (segunda).
+nnoremap <leader><leader>s :%s/<C-r><C-w>//gc<left><left><left>
+vnoremap <leader><leader>s :<C-u>call VisualSelection('', '')<CR>:%s/<C-R>=@/<CR>//gc<left><left><left>
+
+" Modo visual: envuelve la selección entre distintos elementos.
 vnoremap $1 <esc>`>a)<esc>`<i(<esc>
 vnoremap $2 <esc>`>a]<esc>`<i[<esc>
 vnoremap $3 <esc>`>a}<esc>`<i{<esc>
@@ -243,12 +288,7 @@ inoremap $" <esc>`>a"<esc>`<i"<esc>
 vnoremap $' <esc>`>a'<esc>`<i'<esc>
 inoremap $< <esc>`>a><esc>`<i<<esc>
 
-" Enter substitute command with word under the cursor as search pattern (first line)
-" or with visual selection as search pattern (second line).
-nnoremap <leader>s :%s/<C-r><C-w>//gc<left><left><left>
-vnoremap <leader>s :<C-u>call VisualSelection('', '')<CR>:%s/<C-R>=@/<CR>//gc<left><left><left>
-
-" Insert mode: creates both parenthesis/brackets/quotes and leaves cursor in between.
+" Modo inserción: crea parentesis/corchetes/comillas y deja el cursor dentro.
 inoremap $1 ()<esc>i
 inoremap $2 []<esc>i
 inoremap $3 {}<esc>i
@@ -257,17 +297,17 @@ inoremap $" ""<esc>i
 inoremap $' ''<esc>i
 inoremap $< <><esc>i
 
-" Maps <space> to / (forward search) and ctrl-<space> to ? (reverse search).
+" Mapea <space> a / (búsqueda hacia adelante) y ctrl-<space> a ? (atrás).
 map <space> /
 map <c-space> ?
 
-" Moves between windows.
+" Se mueve entre ventanas.
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-" Window useful mappings.
+" Mapeos útiles de ventanas.
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
@@ -282,22 +322,22 @@ endif
 " Mapear la función a <leader>v (o la tecla que prefieras)
 nnoremap <leader>o :call OpenCurrentFileInVSCode()<CR>
 
-" Show current working directory.
+" Muestra directorio de trabajo actual.
 noremap <leader><leader>cd :pwd<cr>
 
-" Changes current working directory to current file directory.
+" Cambia el directorio de trabajo actual al del archivo actual.
 noremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 
-" Buffer mappings.
+" Mapeos de buffers.
 nmap <leader>b<leader> :buffers<enter>
 nmap <leader>bd :bw<space>
 nmap <leader>ba :b<space>#<enter>
 nmap <leader>bo :buffers<enter>:b<space>
 
-" Comes back to last position when opening a file.
+" Vuelve a la última posición al abrir un archivo.
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-" Moves a text line.
+" Mueve una línea de texto.
 nnoremap <M-j> :m .+1<CR>==
 nnoremap <M-k> :m .-2<CR>==
 inoremap <M-j> <Esc>:m .+1<CR>==gi
@@ -305,7 +345,7 @@ inoremap <M-k> <Esc>:m .-2<CR>==gi
 vnoremap <M-j> :m '>+1<CR>gv=gv
 vnoremap <M-k> :m '<-2<CR>gv=gv
 
-" Line spacing useful mappings.
+" Mapeos útiles para espaciado de líneas.
 nmap <space>j<space> o<Esc>k
 nmap <space><space>j o<Esc>
 nmap <space>k<space> O<Esc>j
@@ -318,17 +358,17 @@ nmap <space><space>l a<space><esc>
 nmap <space>hl<space> i<space><esc>la<space><esc>h
 
 
-""""""""""""""""""""""""
-" Mappings for plugins "
-""""""""""""""""""""""""
+"""""""""""""""""""""""
+" Mapeos para plugins "
+"""""""""""""""""""""""
 
-" Toggle Netrw browser.
+" Alterna el explorador de Netrw.
 nnoremap <C-t> :Lexplore<CR>
 
 
-""""""""""""""""""""""""
-" Function definitions "
-""""""""""""""""""""""""
+"""""""""""""""""""""""""""
+" Definición de funciones "
+"""""""""""""""""""""""""""
 
 function! VisualSelection(direction, extra_filter) range
     let l:saved_reg = @"
@@ -361,50 +401,79 @@ function! NextClosedFold(dir)
     endif
 endfunction
 
-" Opens in VSCode netrw file under cursor,
-" reusing opened VSCode instance.
+" Prepara :vimgrep en la línea de comandos usando la palabra bajo el cursor
+" o el patrón de búsqueda actual, sin ejecutarlo automáticamente.
+function! VimgrepProject(use_last_search)
+    if a:use_last_search
+        let l:pattern = @/
+    else
+        let l:word = expand('<cword>')
+        if empty(l:word)
+            echo "No hay palabra debajo del cursor."
+            return
+        endif
+        let l:pattern = '\<' . escape(l:word, '\') . '\>'
+    endif
+
+    let g:vimgrep_prev_incsearch = &incsearch
+    set noincsearch
+    call feedkeys(':vimgrep /' . escape(l:pattern, '/') . '/gj **/*', 'n')
+endfunction
+
+" Abre en VSCode el archivo de netrw bajo el cursor,
+" reutilizando la instancia abierta de VSCode.
 function! OpenNetrwFileInVSCode()
     
-    " Gets the netrw buffer's current working directory.
+    " Obtiene el directorio de trabajo actual del buffer de netrw.
     let l:dir = b:netrw_curdir
     
-    " Gets the filename under the cursor.
+    " Obtiene el nombre de archivo bajo el cursor.
     let l:file = expand('<cfile>')
 
-    " Builds the path.
+    " Construye la ruta.
     let l:path = l:dir . '/' . l:file
     
-    " Executes VSCode silently, reusing the already opened window.
+    " Ejecuta VSCode en silencio, reutilizando la ventana ya abierta.
     silent execute '!code -r ' . shellescape(l:path)
     
-    " Redraws the screen.
+    " Redibuja la pantalla.
     redraw!
 
 endfunction
 
-" Opens in VSCode current buffer,
-" reusing opened VSCode instance.
+" Abre en VSCode el buffer actual,
+" reutilizando la instancia abierta de VSCode.
 function! OpenCurrentFileInVSCode()
 
-    " Gets absolute path of current buffer.
+    " Obtiene la ruta absoluta del buffer actual.
     let l:filepath = expand('%:p')
     
-    " Verifies if buffer is not saved yet.
+    " Verifica si el buffer aun no está guardado.
     if l:filepath ==# ''
         echo "Error: el buffer actual no tiene un archivo guardado."
         return
     endif
     
-    " Opens VSCode.
+    " Abre VSCode.
     silent execute '!code -r ' . shellescape(l:filepath)
     
-    " Redraws the screen.
+    " Redibuja la pantalla.
     redraw!
 
 endfunction
 
-" Opens in VSCode selected file in ctrlp.
+" Abre en VSCode el archivo seleccionado en ctrlp.
 function! OpenCtrlpFileInVSCode()
     let l:file = ctrlp#getcline()
     silent execute '!code -r ' . shellescape(l:file)
+endfunction
+
+" Abre / cierra :copen.
+function! ToggleQuickfix()
+    if empty(filter(getwininfo(), 'v:val.quickfix'))
+        botright copen
+        wincmd p
+    else
+        cclose
+    endif
 endfunction
